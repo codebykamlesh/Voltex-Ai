@@ -1,0 +1,56 @@
+# ============================================
+# Voltex AI — .gitignore
+# ============================================
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Firebase
+firebase-service-account.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+.venv/
+venv/
+env/
+
+# Node.js
+node_modules/
+.next/
+out/
+.turbo/
+
+# Uploads
+uploads/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+
+# Logs
+*.log
+logs/
+
+# Coverage
+htmlcov/
+.coverage
+coverage/

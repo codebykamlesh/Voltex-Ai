@@ -1,0 +1,40 @@
+# ============================================
+# Voltex AI Backend — Python Dependencies
+# ============================================
+
+# Framework
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+
+# Database
+sqlalchemy[asyncio]==2.0.36
+aiomysql==0.2.0
+cryptography==44.0.0
+alembic==1.14.1
+greenlet==3.1.1
+
+# Authentication
+firebase-admin==6.6.0
+PyJWT==2.10.1
+
+# AI
+groq==0.15.0
+
+# File processing
+PyPDF2==3.0.1
+python-docx==1.1.2
+Pillow==11.1.0
+
+# Rate limiting
+slowapi==0.1.9
+
+# Utilities
+python-dotenv==1.0.1
+pydantic==2.10.4
+pydantic-settings==2.7.1
+httpx==0.28.1
+aiofiles==24.1.0
+
+# Logging
+structlog==24.4.0

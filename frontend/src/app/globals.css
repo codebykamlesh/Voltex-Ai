@@ -1,0 +1,316 @@
+@import "tailwindcss";
+
+/* ============================================
+   Voltex AI — Design System Tokens (Tailwind v4)
+   Based on Stitch "Voltex AI Core" design system
+   ============================================ */
+
+@theme inline {
+  /* Typography */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Voltex AI Color Palette */
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+
+  --color-surface: var(--surface);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-bright: var(--surface-bright);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary-container: var(--on-secondary-container);
+
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+
+  --color-error: var(--error-color);
+  --color-error-container: var(--error-container);
+
+  --color-accent: var(--accent);
+}
+
+/* Dark theme (default) */
+:root,
+[data-theme="dark"] {
+  --bg: #000000;
+  --fg: #e5e2e1;
+
+  --surface: #131313;
+  --surface-dim: #131313;
+  --surface-bright: #393939;
+  --surface-container-lowest: #0e0e0e;
+  --surface-container-low: #1c1b1b;
+  --surface-container: #201f1f;
+  --surface-container-high: #2a2a2a;
+  --surface-container-highest: #353534;
+
+  --on-surface: #e5e2e1;
+  --on-surface-variant: #c4c7c8;
+
+  --primary: #ffffff;
+  --on-primary: #2f3131;
+  --primary-container: #e2e2e2;
+
+  --secondary: #a4c8ff;
+  --secondary-container: #0276d3;
+  --on-secondary-container: #fdfcff;
+
+  --outline: #8e9192;
+  --outline-variant: #444748;
+
+  --error-color: #ffb4ab;
+  --error-container: #93000a;
+
+  --accent: #4d9fff;
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --bg: #fafafa;
+  --fg: #1a1a1a;
+
+  --surface: #ffffff;
+  --surface-dim: #f0f0f0;
+  --surface-bright: #ffffff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f5f5f5;
+  --surface-container: #eeeeee;
+  --surface-container-high: #e0e0e0;
+  --surface-container-highest: #d6d6d6;
+
+  --on-surface: #1a1a1a;
+  --on-surface-variant: #555555;
+
+  --primary: #1a1a1a;
+  --on-primary: #ffffff;
+  --primary-container: #2a2a2a;
+
+  --secondary: #0276d3;
+  --secondary-container: #d4e3ff;
+  --on-secondary-container: #001c39;
+
+  --outline: #8e9192;
+  --outline-variant: #d0d0d0;
+
+  --error-color: #ba1a1a;
+  --error-container: #ffdad6;
+
+  --accent: #0276d3;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* ============================================
+   Custom Scrollbar
+   ============================================ */
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--outline-variant);
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--outline);
+}
+
+/* ============================================
+   Streaming Cursor Animation
+   ============================================ */
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.streaming-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background-color: var(--primary);
+  vertical-align: middle;
+  animation: cursor-blink 1s infinite;
+  margin-left: 2px;
+}
+
+/* ============================================
+   Typing Dots Animation
+   ============================================ */
+
+@keyframes typing-dot {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-4px); }
+}
+
+.typing-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--on-surface-variant);
+  margin: 0 2px;
+}
+
+.typing-dot:nth-child(1) { animation: typing-dot 1.4s infinite 0s; }
+.typing-dot:nth-child(2) { animation: typing-dot 1.4s infinite 0.2s; }
+.typing-dot:nth-child(3) { animation: typing-dot 1.4s infinite 0.4s; }
+
+/* ============================================
+   Markdown Prose Styling
+   ============================================ */
+
+.prose-voltex {
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.prose-voltex p {
+  margin: 0.5em 0;
+}
+
+.prose-voltex h1, .prose-voltex h2, .prose-voltex h3 {
+  font-weight: 700;
+  margin: 1em 0 0.5em;
+  color: var(--primary);
+}
+
+.prose-voltex h1 { font-size: 1.5em; }
+.prose-voltex h2 { font-size: 1.25em; }
+.prose-voltex h3 { font-size: 1.1em; }
+
+.prose-voltex ul, .prose-voltex ol {
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+
+.prose-voltex li {
+  margin: 0.25em 0;
+}
+
+.prose-voltex blockquote {
+  border-left: 2px solid var(--outline-variant);
+  padding-left: 1em;
+  margin: 0.5em 0;
+  color: var(--on-surface-variant);
+}
+
+.prose-voltex code:not(pre code) {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  background: var(--surface-container-high);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.prose-voltex pre {
+  margin: 0.75em 0;
+  border-radius: 0;
+}
+
+.prose-voltex a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose-voltex a:hover {
+  color: var(--secondary);
+}
+
+.prose-voltex table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75em 0;
+  font-size: 13px;
+}
+
+.prose-voltex th,
+.prose-voltex td {
+  padding: 8px 12px;
+  border: 1px solid var(--outline-variant);
+  text-align: left;
+}
+
+.prose-voltex th {
+  background: var(--surface-container);
+  font-weight: 600;
+}
+
+.prose-voltex hr {
+  border: none;
+  border-top: 1px solid var(--outline-variant);
+  margin: 1em 0;
+}
+
+/* ============================================
+   Skeleton Loading Animation
+   ============================================ */
+
+@keyframes skeleton-pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.4; }
+}
+
+.skeleton {
+  background: var(--surface-container-high);
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+/* ============================================
+   Focus Styles
+   ============================================ */
+
+*:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ============================================
+   Selection Styles
+   ============================================ */
+
+::selection {
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
