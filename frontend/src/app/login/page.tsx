@@ -312,19 +312,7 @@ export default function LoginPage() {
             </button>
           </p>
 
-          {/* Demo Mode */}
-          <div className="mt-8 flex justify-center border-t border-[var(--outline-variant)] pt-6">
-            <button
-              onClick={() => {
-                useAuthStore.getState().demoLogin();
-                router.push("/");
-              }}
-              className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[var(--on-surface-variant)] transition-colors hover:text-[var(--accent)]"
-            >
-              <Image src="/logo.jpg" alt="Logo" width={14} height={14} className="rounded-[2px] grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all" />
-              Skip & Use Demo Mode
-            </button>
-          </div>
+
         </div>
       </motion.div>
     </div>
