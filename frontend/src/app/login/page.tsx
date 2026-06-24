@@ -120,7 +120,7 @@ export default function LoginPage() {
 
   if (isLoading || loading) {
     return (
-      <div className="flex h-screen items-center justify-center bg-[var(--bg)]">
+      <div className="flex h-screen-safe items-center justify-center bg-[var(--bg)]">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
@@ -133,7 +133,7 @@ export default function LoginPage() {
 
   if (verificationSent) {
     return (
-      <div className="flex h-screen items-center justify-center bg-[var(--bg)] p-4">
+      <div className="flex h-screen-safe items-center justify-center bg-[var(--bg)] p-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -157,7 +157,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="relative flex h-screen items-center justify-center bg-[var(--bg)] p-4">
+    <div className="relative flex h-screen-safe items-center justify-center bg-[var(--bg)] p-4">
       {/* Atmospheric background elements */}
       <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.03]">
         <div className="absolute left-1/3 top-1/4 h-96 w-96 rounded-full bg-[var(--primary)] blur-[150px]" />
@@ -171,7 +171,7 @@ export default function LoginPage() {
         className="relative z-10 w-full max-w-md"
       >
         {/* Logo */}
-        <div className="mb-10 text-center">
+        <div className="mb-6 text-center sm:mb-10">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -179,7 +179,7 @@ export default function LoginPage() {
             className="mb-3 flex items-center justify-center gap-2"
           >
             <Image src="/logo.jpg" alt="Voltex AI Logo" width={32} height={32} className="rounded-sm" priority />
-            <span className="text-2xl font-black tracking-widest text-[var(--primary)]">VOLTEX AI</span>
+            <span className="text-xl font-black tracking-widest text-[var(--primary)] sm:text-2xl">VOLTEX AI</span>
           </motion.div>
           <p className="font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-[var(--on-surface-variant)]">
             Technical Workspace
@@ -187,7 +187,7 @@ export default function LoginPage() {
         </div>
 
         {/* Login Card */}
-        <div className="border border-[var(--outline-variant)] bg-[var(--surface-container)] p-8">
+        <div className="border border-[var(--outline-variant)] bg-[var(--surface-container)] p-5 sm:p-8">
           <h1 className="mb-6 text-xl font-bold text-[var(--primary)]">
             {mode === "login" ? "Sign In" : "Create Account"}
           </h1>

@@ -44,8 +44,8 @@ export function ChatMessages({ isLoading }: Props) {
       </header>
 
       {/* Messages */}
-      <div ref={scrollRef} className="flex-1 overflow-y-auto custom-scrollbar p-4 pb-4">
-        <div className="mx-auto flex max-w-[800px] flex-col gap-8">
+      <div ref={scrollRef} className="flex-1 overflow-y-auto custom-scrollbar p-3 pb-3 sm:p-4 sm:pb-4">
+        <div className="mx-auto flex max-w-[800px] flex-col gap-4 sm:gap-8">
           {isLoading ? (
             // Skeleton loading
             Array.from({ length: 3 }).map((_, i) => (

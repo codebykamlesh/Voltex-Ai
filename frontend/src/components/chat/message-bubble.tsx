@@ -27,10 +27,10 @@ export function MessageBubble({ message }: Props) {
         <div className="font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-[var(--on-surface-variant)]">
           USER
         </div>
-        <div className="max-w-[90%] border border-[var(--outline-variant)] bg-[var(--surface-container-high)] p-4 text-sm text-[var(--primary)]">
+        <div className="max-w-[90%] border border-[var(--outline-variant)] bg-[var(--surface-container-high)] p-3 text-sm text-[var(--primary)] sm:p-4">
           {message.content}
         </div>
-        <div className="flex items-center gap-1 opacity-0 transition-opacity hover:opacity-100 [div:hover>&]:opacity-100">
+        <div className="flex items-center gap-1 opacity-100 transition-opacity sm:opacity-0 sm:hover:opacity-100 [div:hover>&]:opacity-100">
           <button
             onClick={handleCopy}
             className="p-1 text-[var(--on-surface-variant)] hover:text-[var(--primary)]"
@@ -77,7 +77,7 @@ export function MessageBubble({ message }: Props) {
       </div>
 
       {/* Action buttons */}
-      <div className="flex items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+      <div className="flex items-center gap-1 opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
         <button
           onClick={handleCopy}
           className="flex items-center gap-1 p-1 text-[var(--on-surface-variant)] hover:text-[var(--primary)]"

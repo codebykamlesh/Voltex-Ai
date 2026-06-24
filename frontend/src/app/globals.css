@@ -122,6 +122,7 @@
 
 html {
   height: 100%;
+  height: 100dvh;
   scroll-behavior: smooth;
 }
 
@@ -130,7 +131,10 @@ body {
   color: var(--fg);
   font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
   min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* ============================================
@@ -245,6 +249,7 @@ body {
 .prose-voltex pre {
   margin: 0.75em 0;
   border-radius: 0;
+  overflow-x: auto;
 }
 
 .prose-voltex a {
@@ -262,6 +267,9 @@ body {
   border-collapse: collapse;
   margin: 0.75em 0;
   font-size: 13px;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .prose-voltex th,
@@ -313,4 +321,34 @@ body {
 ::selection {
   background: var(--secondary-container);
   color: var(--on-secondary-container);
+}
+
+/* ============================================
+   Mobile-safe Viewport Height
+   ============================================ */
+
+.h-screen-safe {
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* ============================================
+   Responsive Utilities
+   ============================================ */
+
+@media (max-width: 640px) {
+  .prose-voltex {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .prose-voltex h1 { font-size: 1.3em; }
+  .prose-voltex h2 { font-size: 1.15em; }
+  .prose-voltex h3 { font-size: 1.05em; }
+
+  .prose-voltex th,
+  .prose-voltex td {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
 }

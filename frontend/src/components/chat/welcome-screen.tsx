@@ -46,7 +46,7 @@ export function WelcomeScreen() {
         </span>
       </header>
 
-      <div className="flex flex-1 flex-col items-center justify-center p-8">
+      <div className="flex flex-1 flex-col items-center justify-center p-4 sm:p-8">
         {/* Logo animation */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
@@ -55,14 +55,14 @@ export function WelcomeScreen() {
           className="mb-6 flex items-center gap-3"
         >
           <Image src="/logo.jpg" alt="Voltex AI Logo" width={40} height={40} className="rounded-[4px]" />
-          <span className="text-3xl font-black tracking-widest text-[var(--primary)]">VOLTEX AI</span>
+          <span className="text-xl font-black tracking-widest text-[var(--primary)] sm:text-3xl">VOLTEX AI</span>
         </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="mb-12 text-center text-sm text-[var(--on-surface-variant)]"
+          className="mb-6 text-center text-xs text-[var(--on-surface-variant)] sm:mb-12 sm:text-sm"
         >
           High-performance AI assistant for developers and power users.
         </motion.p>

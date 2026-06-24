@@ -62,7 +62,7 @@ export default function ChatLayout({ children }: { children: React.ReactNode }) 
   // Show loading while checking auth
   if (authLoading) {
     return (
-      <div className="flex h-screen items-center justify-center bg-[var(--bg)]">
+      <div className="flex h-screen-safe items-center justify-center bg-[var(--bg)]">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
@@ -76,7 +76,7 @@ export default function ChatLayout({ children }: { children: React.ReactNode }) 
   if (!isAuthenticated) return null;
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-[var(--bg)]">
+    <div className="flex h-screen-safe w-full overflow-hidden bg-[var(--bg)]">
       {/* Sidebar */}
       <AnimatePresence mode="wait">
         {sidebarOpen && (

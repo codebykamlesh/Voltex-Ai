@@ -20,7 +20,7 @@ export function CodeBlock({ language, code }: Props) {
   };
 
   return (
-    <div className="my-3 border border-[var(--outline-variant)] bg-[var(--surface-container-lowest)]">
+    <div className="my-3 overflow-hidden border border-[var(--outline-variant)] bg-[var(--surface-container-lowest)]">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-[var(--outline-variant)] px-4 py-2">
         <span className="font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-[var(--on-surface-variant)]">

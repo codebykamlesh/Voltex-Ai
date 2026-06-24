@@ -82,13 +82,13 @@ export function SettingsDialog({ onClose }: Props) {
 
   return createPortal(
     <div 
-      className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/60"
+      className="fixed inset-0 z-[99999] flex items-end justify-center bg-black/60 sm:items-center sm:p-4"
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="relative z-[100000] w-full max-w-lg border border-outline-variant bg-surface-container shadow-2xl"
+        className="relative z-[100000] flex max-h-[100dvh] w-full flex-col border border-outline-variant bg-surface-container shadow-2xl sm:max-h-[85vh] sm:max-w-lg sm:rounded-none"
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-outline-variant px-6 py-4">
@@ -98,7 +98,7 @@ export function SettingsDialog({ onClose }: Props) {
           </button>
         </div>
 
-        <div className="space-y-6 p-6">
+        <div className="min-h-0 flex-1 space-y-6 overflow-y-auto p-4 sm:p-6">
           {/* Theme */}
           <div>
             <label className="mb-2 block font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-[var(--on-surface-variant)]">
@@ -205,7 +205,7 @@ export function SettingsDialog({ onClose }: Props) {
         </div>
 
         {/* Footer */}
-        <div className="flex justify-end gap-3 border-t border-outline-variant px-6 py-4">
+        <div className="flex justify-end gap-3 border-t border-outline-variant px-4 py-3 sm:px-6 sm:py-4">
           <button
             onClick={handleClose}
             className="border border-outline-variant px-6 py-2.5 text-sm text-[var(--on-surface-variant)] transition-colors hover:bg-surface-container-high"

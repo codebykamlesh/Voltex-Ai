@@ -179,7 +179,7 @@ export function ChatInput({ conversationId }: Props) {
   };
 
   return (
-    <div className="border-t border-[var(--outline-variant)] bg-gradient-to-t from-[var(--bg)] via-[var(--bg)] to-transparent p-4">
+    <div className="border-t border-[var(--outline-variant)] bg-gradient-to-t from-[var(--bg)] via-[var(--bg)] to-transparent p-2 sm:p-4">
       {/* Uploaded files */}
       {uploadedFiles.length > 0 && (
         <div className="mb-3 flex flex-wrap gap-2">
