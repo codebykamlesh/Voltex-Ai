@@ -12,6 +12,8 @@ export default function LoginPage() {
   const router = useRouter();
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const isLoading = useAuthStore((s) => s.isLoading);
+  const authError = useAuthStore((s) => s.error);
+  const clearAuthError = useAuthStore((s) => s.clearError);
 
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [displayName, setDisplayName] = useState("");
@@ -21,6 +23,15 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [verificationSent, setVerificationSent] = useState(false);
+
+  // If auth store reports an error (e.g., backend verify failed), show it and stop loading
+  useEffect(() => {
+    if (authError) {
+      setError(authError);
+      setLoading(false);
+      clearAuthError();
+    }
+  }, [authError, clearAuthError]);
 
   // Redirect if already authenticated
   useEffect(() => {
@@ -38,14 +49,16 @@ export default function LoginPage() {
     setLoading(true);
     try {
       await signInWithGoogle();
-      router.push("/");
+      // Don't navigate here — onAuthStateChanged will fire, the auth store
+      // will verify the token with the backend, set isAuthenticated=true,
+      // and the useEffect above will handle the redirect to "/".
+      // Keep loading=true so the UI shows a spinner until that completes.
     } catch (err: unknown) {
       console.error("Google login error:", err);
       const message = err instanceof Error ? err.message : "Google sign-in failed";
       if (!message.includes("popup-closed")) {
         setError(message);
       }
-    } finally {
       setLoading(false);
     }
   };
@@ -80,9 +93,13 @@ export default function LoginPage() {
       if (mode === "signup") {
         await signUpWithEmail(email, password, displayName.trim());
         setVerificationSent(true);
+        setLoading(false);
       } else {
         await signInWithEmail(email, password);
-        router.push("/");
+        // Don't navigate here — onAuthStateChanged will fire, the auth store
+        // will verify the token with the backend, set isAuthenticated=true,
+        // and the useEffect above will handle the redirect to "/".
+        // Keep loading=true so the UI shows a spinner until that completes.
       }
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "";
@@ -97,12 +114,11 @@ export default function LoginPage() {
       } else {
         setError(mode === "signup" ? "Sign up failed. Please try again." : "Sign in failed. Please try again.");
       }
-    } finally {
       setLoading(false);
     }
   };
 
-  if (isLoading) {
+  if (isLoading || loading) {
     return (
       <div className="flex h-screen items-center justify-center bg-[var(--bg)]">
         <motion.div

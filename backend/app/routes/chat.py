@@ -138,6 +138,8 @@ async def send_message(
     # Commit user message before streaming
     await db.commit()
 
+    conv_id_uuid = conversation.id
+    user_id_uuid = user.id
     conv_id_str = str(conversation.id)
     stop_event = asyncio.Event()
     _active_generations[conv_id_str] = stop_event
@@ -172,9 +174,9 @@ async def send_message(
 
             # Save assistant message in a fresh session (the route's session is already committed/closed)
             async with async_session() as save_db:
-                tokens = usage_data.get("total_tokens")
+                tokens = usage_data.get("total_tokens") or 0
                 assistant_msg = Message(
-                    conversation_id=conversation.id,
+                    conversation_id=conv_id_uuid,
                     role="assistant",
                     content=full_content or "I apologize, but I was unable to generate a response.",
                     model_used=model,
@@ -185,16 +187,16 @@ async def send_message(
                 # Track API usage
                 if usage_data and not usage_data.get("stopped"):
                     api_usage = ApiUsage(
-                        user_id=user.id,
+                        user_id=user_id_uuid,
                         model=model,
-                        tokens_input=usage_data.get("prompt_tokens", 0),
-                        tokens_output=usage_data.get("completion_tokens", 0),
+                        tokens_input=usage_data.get("prompt_tokens") or 0,
+                        tokens_output=usage_data.get("completion_tokens") or 0,
                     )
                     save_db.add(api_usage)
 
                 # Update conversation timestamp
                 conv_update = await save_db.execute(
-                    select(Conversation).where(Conversation.id == conversation.id)
+                    select(Conversation).where(Conversation.id == conv_id_uuid)
                 )
                 conv_obj = conv_update.scalar_one_or_none()
                 if conv_obj:

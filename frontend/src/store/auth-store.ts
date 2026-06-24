@@ -34,6 +34,9 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   initialize: () => {
     const unsubscribe = onAuthChange(async (firebaseUser) => {
       if (firebaseUser) {
+        // Signal that we're verifying — prevents premature redirect to /login
+        set({ isLoading: true });
+
         // If the user appears unverified, force a reload to get the latest status from the server
         if (!firebaseUser.emailVerified && firebaseUser.providerData.some(p => p.providerId === "password")) {
           try {
@@ -61,7 +64,14 @@ export const useAuthStore = create<AuthState>((set, get) => ({
           });
         } catch (err) {
           console.error("Auth verification failed:", err);
-          set({ user: null, firebaseUser: null, isAuthenticated: false, isLoading: false });
+          const message = err instanceof Error ? err.message : "Authentication failed";
+          set({
+            user: null,
+            firebaseUser: null,
+            isAuthenticated: false,
+            isLoading: false,
+            error: `Backend verification failed: ${message}`,
+          });
         }
       } else {
         set({ user: null, firebaseUser: null, isAuthenticated: false, isLoading: false });

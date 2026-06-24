@@ -104,11 +104,12 @@ async def chat_completion_stream(
                 usage_data = {}
                 if hasattr(chunk, "x_groq") and chunk.x_groq and hasattr(chunk.x_groq, "usage"):
                     u = chunk.x_groq.usage
-                    usage_data = {
-                        "prompt_tokens": u.prompt_tokens,
-                        "completion_tokens": u.completion_tokens,
-                        "total_tokens": u.total_tokens,
-                    }
+                    if u:
+                        usage_data = {
+                            "prompt_tokens": getattr(u, "prompt_tokens", 0),
+                            "completion_tokens": getattr(u, "completion_tokens", 0),
+                            "total_tokens": getattr(u, "total_tokens", 0),
+                        }
                 yield {
                     "type": "done",
                     "content": total_content,
